@@ -9,7 +9,6 @@ namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
         protected readonly EmailConfig _emailConfig;
         public string To { get; set; }
         public string Subject { get; set; }
-        public string Body { get; set; }
 
         public BaseEmail(EmailConfig emailConfig)
         {
@@ -25,7 +24,7 @@ namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
             return email;
         }
 
-        protected async Task Send(MimeMessage email)
+        protected async Task SendEmail(MimeMessage email)
         {
             using var smtp = new SmtpClient();
             try

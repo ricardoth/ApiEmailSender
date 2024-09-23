@@ -16,13 +16,19 @@ namespace ApiEmailSender.Application.Factories
 
         public IEmail CreateEmail(SendEmailTicketCommand command)
         {
-            return new EmailWithTicket(_emailConfig)
+            return new EmailTicketBase64(_emailConfig)
             {
                 To = command.EmailTicket.To,
                 Subject = command.EmailTicket.Subject,
-                Body = command.EmailTicket.Body,
+                PdfBase64 = command.EmailTicket.Base64,
                 IdTicket = command.EmailTicket.IdTicket,
-                PdfBase64 = command.EmailTicket.Base64
+                Nombres = command.EmailTicket.Nombres,
+                ApellidoPaterno = command.EmailTicket.ApellidoPaterno,
+                ApellidoMaterno = command.EmailTicket.ApellidoMaterno,
+                NombreEvento = command.EmailTicket.NombreEvento,
+                NombreLugar = command.EmailTicket.NombreLugar,
+                NombreSector = command.EmailTicket.NombreSector,    
+                MontoTotal = command.EmailTicket.MontoTotal
             };
         }
     }
