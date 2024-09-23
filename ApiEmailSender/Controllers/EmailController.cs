@@ -16,7 +16,7 @@ namespace ApiEmailSender.WebApi.Controllers
             _mediator = mediator;   
         }
 
-        [HttpPost]
+        [HttpPost("EmailTicket")]
         public async Task<IActionResult> Post([FromBody] EmailTicketDto emailTicketDto)
         {
             var query = await _mediator.Send(new SendEmailTicketCommand(emailTicketDto));

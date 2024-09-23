@@ -7,6 +7,6 @@ namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
         public string To { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
-        Task Send(MimeMessage email);
+        Task Send();
     }
 }

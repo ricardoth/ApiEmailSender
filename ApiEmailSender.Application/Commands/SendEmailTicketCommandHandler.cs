@@ -18,9 +18,7 @@ namespace ApiEmailSender.Application.Commands
             try
             {
                 IEmail emailService = _emailFactory.CreateEmail(request);
-
-                var emailMessage = ((BaseEmail)emailService).CreateEmailMessage();
-                await emailService.Send(emailMessage);
+                await emailService.Send();
                 return true;
             }
             catch (Exception ex)

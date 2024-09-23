@@ -25,7 +25,7 @@ namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
             return email;
         }
 
-        public async Task Send(MimeMessage email)
+        protected async Task Send(MimeMessage email)
         {
             using var smtp = new SmtpClient();
             try
@@ -39,11 +39,11 @@ namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
                 //Traza error
                 throw;
             }
-            finally 
+            finally
             {
-                smtp.Disconnect(true);            
+                smtp.Disconnect(true);
             }
-            
+
         }
 
         public abstract Task Send();
