@@ -1,4 +1,5 @@
-﻿using ApiEmailSender.Application.Email.Query;
+﻿using ApiEmailSender.Application.Commands;
+using ApiEmailSender.Domain.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,10 +16,10 @@ namespace ApiEmailSender.WebApi.Controllers
             _mediator = mediator;   
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] EmailTicketDto emailTicketDto)
         {
-            var query = await _mediator.Send(new EmailSenderQuery());
+            var query = await _mediator.Send(new SendEmailTicketCommand(emailTicketDto));
             return Ok(query);
         }
     }

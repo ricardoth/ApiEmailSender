@@ -1,6 +1,6 @@
-﻿using ApiEmailSender.Application.Email.Query;
+﻿using ApiEmailSender.Application;
+using ApiEmailSender.Domain.ValueObjects;
 using ApiEmailSender.WebApi.Helpers;
-using MediatR;
 using System.Reflection;
 
 namespace ApiEmailSender.WebApi.Configuration
@@ -16,7 +16,10 @@ namespace ApiEmailSender.WebApi.Configuration
             #endregion
 
             #region Manual Dependencies
-            service.AddScoped<IRequestHandler<EmailSenderQuery, EmailSenderResult>, EmailSenderHandler>();
+            var emailConfig = configuration.GetSection(nameof(EmailConfig)).Get<EmailConfig>();
+            service.AddSingleton(emailConfig);
+
+            DependencyInjection.UseDependencyInjectionApplication(service, configuration);
             #endregion
         }
     }

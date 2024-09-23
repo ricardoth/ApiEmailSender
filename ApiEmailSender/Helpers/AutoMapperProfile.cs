@@ -1,5 +1,5 @@
 ﻿using ApiEmailSender.Application.Email.Query;
-using ApiEmailSender.Domain;
+using ApiEmailSender.Domain.Entities;
 using AutoMapper;
 
 namespace ApiEmailSender.WebApi.Helpers
