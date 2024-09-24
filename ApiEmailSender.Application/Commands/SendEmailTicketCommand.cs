@@ -6,7 +6,7 @@
 
         public SendEmailTicketCommand(EmailTicketDto emailTicketDto)
         {
-            EmailTicket = emailTicketDto;    
+            EmailTicket = emailTicketDto;
         }
     }
 }

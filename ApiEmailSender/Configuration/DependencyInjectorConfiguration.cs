@@ -5,6 +5,9 @@
         public static void UseDependencyInjectorConfiguration(this IServiceCollection service, IConfiguration configuration)
         {
             #region Don't Touch
+            service.AddControllers();
+          
+
             service.AddTransient<GlobalExceptionHandlerMiddleware>();
             service.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             service.AddAutoMapper(typeof(AutoMapperProfile));

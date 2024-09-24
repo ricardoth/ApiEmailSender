@@ -1,13 +1,14 @@
-﻿using ApiEmailSender.Domain.Exceptions;
+﻿using ApiEmailSender.Application.Validators;
+using FluentValidation;
 
 namespace ApiEmailSender.Application.Commands
 {
     public class SendEmailTicketCommandHandler : IRequestHandler<SendEmailTicketCommand, BaseResponse>
     {
         private readonly IEmailFactory _emailFactory;
-        private readonly IValidator<SendEmailTicketCommand> _validator;
+        private readonly IValidator<EmailTicketDto> _validator;
 
-        public SendEmailTicketCommandHandler(IEmailFactory emailFactory, IValidator<SendEmailTicketCommand> validator)
+        public SendEmailTicketCommandHandler(IEmailFactory emailFactory, IValidator<EmailTicketDto> validator)
         {
             _emailFactory = emailFactory;
             _validator = validator;
@@ -15,7 +16,7 @@ namespace ApiEmailSender.Application.Commands
 
         public async Task<BaseResponse> Handle(SendEmailTicketCommand request, CancellationToken cancellationToken)
         {
-            var validationResult = _validator.Validate(request);
+            var validationResult = _validator.Validate(request.EmailTicket);
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();

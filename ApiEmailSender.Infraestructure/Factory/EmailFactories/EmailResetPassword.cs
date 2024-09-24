@@ -2,7 +2,7 @@
 {
     public class EmailResetPassword : BaseEmail
     {
-        public string UrlCambioContrasena { get; set; }
+        public string UrlRetorno { get; set; }
         
         public EmailResetPassword(EmailConfig emailConfig) : base(emailConfig) { }
 
@@ -24,7 +24,7 @@
             string currentDirectory = Directory.GetCurrentDirectory() + "\\Template";
             string htmlTemplatePath = Path.Combine(currentDirectory, "resetPasswordTemplate.html");
             string htmlTemplate = File.ReadAllText(htmlTemplatePath);
-            string htmlTemplateEmail = htmlTemplate.Replace("{UrlCambioContrasena}", UrlCambioContrasena);
+            string htmlTemplateEmail = htmlTemplate.Replace("{UrlRetorno}", UrlRetorno);
             return htmlTemplateEmail;
         }
     }

@@ -3,9 +3,9 @@
     public class ResetPasswordEmailCommandHandler : IRequestHandler<ResetPasswordEmailCommand, BaseResponse>
     {
         private readonly IEmailFactory _emailFactory;
-        private readonly IValidator<ResetPasswordEmailCommand> _validator;
+        private readonly IValidator<ResetPasswordEmailDto> _validator;
 
-        public ResetPasswordEmailCommandHandler(IEmailFactory emailFactory, IValidator<ResetPasswordEmailCommand> validator)
+        public ResetPasswordEmailCommandHandler(IEmailFactory emailFactory, IValidator<ResetPasswordEmailDto> validator)
         {
             _emailFactory = emailFactory;       
             _validator = validator;
@@ -13,7 +13,7 @@
 
         public async Task<BaseResponse> Handle(ResetPasswordEmailCommand request, CancellationToken cancellationToken)
         {
-            var validationResult = _validator.Validate(request);
+            var validationResult = _validator.Validate(request.ResetPasswordEmail);
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
