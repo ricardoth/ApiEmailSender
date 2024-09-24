@@ -24,22 +24,30 @@ jobs:
       - name: dotnet publish
         run: dotnet publish ./ApiEmailSender.sln -c Release -o ${{ github.workspace }}/myapp
 
+      - name: List contents of myapp before zipping
+        run: dir ./myapp
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: myapp
-          path: './myapp'
+          path: ${{ github.workspace }}/myapp  # Asegúrate de que se refiere al archivo ZIP
 
   deploy:
     runs-on: windows-latest
     needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: myapp
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -53,4 +61,4 @@ jobs:
         with:
           app-name: 'api-email-sender'
           slot-name: 'Production'
-          package: './myapp'  # Cambia a la ruta de la carpeta no comprimida
+          package: './myapp'  # Asegúrate de que apunte al archivo ZIP descargado
