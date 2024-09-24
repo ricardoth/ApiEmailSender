@@ -22,13 +22,16 @@ jobs:
         run: dotnet build ./ApiEmailSender.sln --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./ApiEmailSender.sln -c Release -o ./myapp
+        run: dotnet publish ./ApiEmailSender.sln -c Release -o ${{ github.workspace }}/myapp
+
+      - name: List contents of myapp  # Paso para verificar el contenido
+        run: dir ./myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: myapp  # Cambia aquí
-          path: ./myapp
+          name: myapp
+          path: ${{ github.workspace }}/myapp
 
   deploy:
     runs-on: windows-latest
@@ -43,7 +46,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: myapp  # Cambia aquí
+          name: myapp
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -57,4 +60,4 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'api-email-sender'
-          package: './myapp'  # Esta es la ruta donde se espera que estén los archivos de tu app
+          package: '${{ github.workspace }}/myapp'  # Actualiza aquí
