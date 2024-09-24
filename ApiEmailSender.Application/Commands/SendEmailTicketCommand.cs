@@ -1,7 +1,4 @@
-﻿using ApiEmailSender.Domain.DTOs;
-using MediatR;
-
-namespace ApiEmailSender.Application.Commands
+﻿namespace ApiEmailSender.Application.Commands
 {
     public class SendEmailTicketCommand : IRequest<bool>
     {

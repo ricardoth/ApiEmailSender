@@ -1,9 +1,4 @@
-﻿using ApiEmailSender.Application.Commands;
-using ApiEmailSender.Application.Interfaces;
-using ApiEmailSender.Domain.ValueObjects;
-using ApiEmailSender.Infraestructure.Factory.EmailFactories;
-
-namespace ApiEmailSender.Application.Factories
+﻿namespace ApiEmailSender.Application.Factories
 {
     public class EmailFactory : IEmailFactory
     {
@@ -27,8 +22,18 @@ namespace ApiEmailSender.Application.Factories
                 ApellidoMaterno = command.EmailTicket.ApellidoMaterno,
                 NombreEvento = command.EmailTicket.NombreEvento,
                 NombreLugar = command.EmailTicket.NombreLugar,
-                NombreSector = command.EmailTicket.NombreSector,    
+                NombreSector = command.EmailTicket.NombreSector,
                 MontoTotal = command.EmailTicket.MontoTotal
+            };
+        }
+
+        public IEmail CreateEmail(ResetPasswordEmailCommand command)
+        {
+            return new EmailResetPassword(_emailConfig)
+            {
+                To = command.ResetPasswordEmail.To,
+                Subject = command.ResetPasswordEmail.Subject,
+                UrlCambioContrasena = command.ResetPasswordEmail.UrlCambioContrasena
             };
         }
     }

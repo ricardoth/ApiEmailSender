@@ -1,11 +1,4 @@
-﻿using ApiEmailSender.Application.Commands;
-using ApiEmailSender.Application.Factories;
-using ApiEmailSender.Application.Interfaces;
-using MediatR;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace ApiEmailSender.Application
+﻿namespace ApiEmailSender.Application
 {
     public static class DependencyInjection
     {
@@ -14,6 +7,7 @@ namespace ApiEmailSender.Application
             services.AddScoped<IEmailFactory, EmailFactory>();
 
             services.AddScoped<IRequestHandler<SendEmailTicketCommand, bool>, SendEmailTicketCommandHandler>();
+            services.AddScoped<IRequestHandler<ResetPasswordEmailCommand, bool>, ResetPasswordEmailCommandHandler>();
         }
     }
 }

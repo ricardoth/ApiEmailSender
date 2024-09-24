@@ -1,6 +1,4 @@
-﻿using MimeKit;
-
-namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
+﻿namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
 {
     public interface IEmail
     {

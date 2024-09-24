@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace ApiEmailSender.Infraestructure.DependencyConfiguration
+﻿namespace ApiEmailSender.Infraestructure.DependencyConfiguration
 {
     public static class DependencyContainer
     {

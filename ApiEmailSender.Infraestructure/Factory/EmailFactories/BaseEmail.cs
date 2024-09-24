@@ -19,7 +19,7 @@ namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
         {
             var email = new MimeMessage();
             email.Subject = Subject;
-            email.From.Add(new MailboxAddress("Estimado", _emailConfig.From));
+            email.From.Add(new MailboxAddress("Resonance Pass", _emailConfig.From));
             email.To.Add(new MailboxAddress("Destinatario", To));
             return email;
         }

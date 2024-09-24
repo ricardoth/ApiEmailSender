@@ -1,15 +1,15 @@
 ﻿namespace ApiEmailSender.Application.Commands
 {
-    public class SendEmailTicketCommandHandler : IRequestHandler<SendEmailTicketCommand, bool>
+    public class ResetPasswordEmailCommandHandler : IRequestHandler<ResetPasswordEmailCommand, bool>
     {
         private readonly IEmailFactory _emailFactory;
 
-        public SendEmailTicketCommandHandler(IEmailFactory emailFactory)
+        public ResetPasswordEmailCommandHandler(IEmailFactory emailFactory)
         {
-            _emailFactory = emailFactory;                
+            _emailFactory = emailFactory;       
         }
 
-        public async Task<bool> Handle(SendEmailTicketCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(ResetPasswordEmailCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -19,6 +19,7 @@
             }
             catch (Exception ex)
             {
+
                 throw;
             }
         }

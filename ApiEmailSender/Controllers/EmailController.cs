@@ -16,10 +16,17 @@ namespace ApiEmailSender.WebApi.Controllers
             _mediator = mediator;   
         }
 
-        [HttpPost("EmailTicket")]
+        [HttpPost("generateTicket")]
         public async Task<IActionResult> Post([FromBody] EmailTicketDto emailTicketDto)
         {
             var query = await _mediator.Send(new SendEmailTicketCommand(emailTicketDto));
+            return Ok(query);
+        }
+
+        [HttpPost("resetPassword")]
+        public async Task<IActionResult> Post([FromBody] ResetPasswordEmailDto resetPasswordEmailDto)
+        {
+            var query = await _mediator.Send(new ResetPasswordEmailCommand(resetPasswordEmailDto));
             return Ok(query);
         }
     }

@@ -1,7 +1,4 @@
-﻿using ApiEmailSender.Domain.ValueObjects;
-using MimeKit;
-
-namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
+﻿namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
 {
     public class EmailTicketBase64 : BaseEmail
     {
