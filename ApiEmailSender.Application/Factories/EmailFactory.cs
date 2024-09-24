@@ -23,7 +23,7 @@
                 NombreEvento = command.EmailTicket.NombreEvento,
                 NombreLugar = command.EmailTicket.NombreLugar,
                 NombreSector = command.EmailTicket.NombreSector,
-                MontoTotal = command.EmailTicket.MontoTotal
+                MontoTotal = command.EmailTicket.MontoTotal 
             };
         }
 
