@@ -19,10 +19,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build ApiEmailSender/ApiEmailSender.csproj --configuration Release
+        run: dotnet build ./ApiEmailSender.sln --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ApiEmailSender/ApiEmailSender.csproj -c Release -o ./myapp
+        run: dotnet publish ./ApiEmailSender.sln -c Release -o ./myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
