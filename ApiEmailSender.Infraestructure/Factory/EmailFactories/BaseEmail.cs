@@ -1,4 +1,5 @@
-﻿using ApiEmailSender.Domain.ValueObjects;
+﻿using ApiEmailSender.Domain.Exceptions;
+using ApiEmailSender.Domain.ValueObjects;
 using MailKit.Net.Smtp;
 using MimeKit;
 
@@ -35,8 +36,8 @@ namespace ApiEmailSender.Infraestructure.Factory.EmailFactories
             }
             catch (Exception ex)
             {
-                //Traza error
-                throw;
+                //Traza error insight
+                throw new BadRequestException($"Ha ocurrido un error al enviar el correo {ex.Message}");
             }
             finally
             {

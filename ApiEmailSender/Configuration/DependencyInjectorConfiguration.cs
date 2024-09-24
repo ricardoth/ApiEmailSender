@@ -1,17 +1,12 @@
-﻿using ApiEmailSender.Application;
-using ApiEmailSender.Domain.ValueObjects;
-using ApiEmailSender.WebApi.Helpers;
-using System.Reflection;
-
-namespace ApiEmailSender.WebApi.Configuration
+﻿namespace ApiEmailSender.WebApi.Configuration
 {
     public static class DependencyInjectorConfiguration 
     {
         public static void UseDependencyInjectorConfiguration(this IServiceCollection service, IConfiguration configuration)
         {
             #region Don't Touch
+            service.AddTransient<GlobalExceptionHandlerMiddleware>();
             service.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-
             service.AddAutoMapper(typeof(AutoMapperProfile));
             #endregion
 

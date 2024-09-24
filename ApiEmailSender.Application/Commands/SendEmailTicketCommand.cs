@@ -1,6 +1,6 @@
 ﻿namespace ApiEmailSender.Application.Commands
 {
-    public class SendEmailTicketCommand : IRequest<bool>
+    public class SendEmailTicketCommand : IRequest<BaseResponse>
     {
         public EmailTicketDto EmailTicket { get; set; }
 

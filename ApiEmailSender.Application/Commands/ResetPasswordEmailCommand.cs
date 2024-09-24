@@ -1,6 +1,6 @@
 ﻿namespace ApiEmailSender.Application.Commands
 {
-    public class ResetPasswordEmailCommand : IRequest<bool>
+    public class ResetPasswordEmailCommand : IRequest<BaseResponse>
     {
         public ResetPasswordEmailCommand(ResetPasswordEmailDto resetPasswordEmail)
         {

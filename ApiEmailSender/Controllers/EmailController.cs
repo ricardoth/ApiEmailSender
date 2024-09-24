@@ -1,9 +1,4 @@
-﻿using ApiEmailSender.Application.Commands;
-using ApiEmailSender.Domain.DTOs;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ApiEmailSender.WebApi.Controllers
+﻿namespace ApiEmailSender.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -17,17 +12,17 @@ namespace ApiEmailSender.WebApi.Controllers
         }
 
         [HttpPost("generateTicket")]
-        public async Task<IActionResult> Post([FromBody] EmailTicketDto emailTicketDto)
+        public async Task<BaseResponse> Post([FromBody] EmailTicketDto emailTicketDto)
         {
             var query = await _mediator.Send(new SendEmailTicketCommand(emailTicketDto));
-            return Ok(query);
+            return query;
         }
 
         [HttpPost("resetPassword")]
-        public async Task<IActionResult> Post([FromBody] ResetPasswordEmailDto resetPasswordEmailDto)
+        public async Task<BaseResponse> Post([FromBody] ResetPasswordEmailDto resetPasswordEmailDto)
         {
             var query = await _mediator.Send(new ResetPasswordEmailCommand(resetPasswordEmailDto));
-            return Ok(query);
+            return query;
         }
     }
 }

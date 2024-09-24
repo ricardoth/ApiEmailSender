@@ -7,3 +7,5 @@ global using ApiEmailSender.Domain.ValueObjects;
 global using ApiEmailSender.Application.Factories;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
+global using FluentValidation;
+global using ApiEmailSender.Domain.Exceptions;

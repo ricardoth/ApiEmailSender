@@ -6,8 +6,8 @@
         {
             services.AddScoped<IEmailFactory, EmailFactory>();
 
-            services.AddScoped<IRequestHandler<SendEmailTicketCommand, bool>, SendEmailTicketCommandHandler>();
-            services.AddScoped<IRequestHandler<ResetPasswordEmailCommand, bool>, ResetPasswordEmailCommandHandler>();
+            services.AddScoped<IRequestHandler<SendEmailTicketCommand, BaseResponse>, SendEmailTicketCommandHandler>();
+            services.AddScoped<IRequestHandler<ResetPasswordEmailCommand, BaseResponse>, ResetPasswordEmailCommandHandler>();
         }
     }
 }
