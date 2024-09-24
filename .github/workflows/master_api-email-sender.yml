@@ -61,4 +61,4 @@ jobs:
         with:
           app-name: 'api-email-sender'
           slot-name: 'Production'
-          package: 'myapp'  # Asegúrate de que apunte al archivo ZIP descargado
+          package: .
