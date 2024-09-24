@@ -24,14 +24,20 @@ jobs:
       - name: dotnet publish
         run: dotnet publish ./ApiEmailSender.sln -c Release -o ${{ github.workspace }}/myapp
 
-      - name: List contents of myapp  # Paso para verificar el contenido
+      - name: List contents of myapp before zipping
         run: dir ./myapp
+
+      - name: Create ZIP package
+        run: powershell -Command "Compress-Archive -Path './myapp/*' -DestinationPath './myapp.zip'"
+
+      - name: List contents of ZIP package
+        run: powershell -Command "Expand-Archive -Path './myapp.zip' -DestinationPath './unzipped' -Force; dir ./unzipped"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: myapp
-          path: ${{ github.workspace }}/myapp
+          path: ${{ github.workspace }}/myapp.zip  # Asegúrate de que se refiere al archivo ZIP
 
   deploy:
     runs-on: windows-latest
@@ -60,4 +66,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'api-email-sender'
-          package: '${{ github.workspace }}/myapp'  # Actualiza aquí
+          slot-name: 'Production'
+          package: './myapp.zip'  # Asegúrate de que apunte al archivo ZIP descargado
