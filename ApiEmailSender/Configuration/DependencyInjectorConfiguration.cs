@@ -9,6 +9,8 @@
             service.AddTransient<GlobalExceptionHandlerMiddleware>();
             service.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             service.AddAutoMapper(typeof(AutoMapperProfile));
+
+            service.AddApplicationInsightsTelemetry();
             #endregion
 
             #region Manual Dependencies
