@@ -1,3 +1,6 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
 name: Build and deploy ASP.Net Core app to Azure Web App - api-email-sender
 
 on:
@@ -19,19 +22,16 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build ./ApiEmailSender.sln --configuration Release
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./ApiEmailSender.sln -c Release -o ${{ github.workspace }}/myapp
-
-      - name: List contents of myapp before zipping
-        run: dir ./myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: myapp
-          path: ${{ github.workspace }}/myapp  # Asegúrate de que se refiere al archivo ZIP
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: windows-latest
@@ -40,20 +40,20 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write
+      id-token: write #This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: myapp
-
+          name: .net-app
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_52D7FDD5B62345C789CF4DEE77D42FA0 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0BD20B6E12864B9DA2E2B7D7401279A7 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9C3EF5F6AD494D9BB1890AE9DC967753 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E0CF875FCB0F4813BD6F2A3CFDFC19A4 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_286FE708F1B8405BA96C927DF6BAA350 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8CFDFC18ECCF47869A5FDE47B73C6A4A }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -62,3 +62,4 @@ jobs:
           app-name: 'api-email-sender'
           slot-name: 'Production'
           package: .
+          
