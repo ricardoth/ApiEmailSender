@@ -11,4 +11,3 @@ global using ApiEmailSender.Application.Commands;
 global using ApiEmailSender.Domain.DTOs;
 global using MediatR;
 global using Microsoft.AspNetCore.Mvc;
-global using Microsoft.ApplicationInsights;
