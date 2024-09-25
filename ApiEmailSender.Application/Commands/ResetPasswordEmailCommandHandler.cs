@@ -27,7 +27,6 @@
 
                 var baseResponse = new BaseResponse()
                 {
-                    StatusCode = 200,
                     Message = $"Se ha enviado correctamente el email a {request.ResetPasswordEmail.To}"
                 };
                 return baseResponse;
