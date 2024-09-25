@@ -11,3 +11,4 @@ global using ApiEmailSender.Domain.Exceptions;
 global using FluentValidation;
 global using FluentValidation.AspNetCore;
 global using System.Reflection;
+global using Microsoft.ApplicationInsights;
