@@ -20,4 +20,13 @@
     <ProjectReference Include="..\ApiEmailSender.Domain\ApiEmailSender.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Template\plantillaEmailTicketConfirm.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\resetPasswordTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
