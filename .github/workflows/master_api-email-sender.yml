@@ -22,7 +22,7 @@ jobs:
         run: dotnet build ./ApiEmailSender.sln --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./ApiEmailSender.sln -c Release -o ${{ github.workspace }}/myapp
+        run: dotnet publish ./ApiEmailSender.sln -c Release -o ./myapp
 
       - name: List contents of myapp before zipping
         run: dir ./myapp
@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: myapp
-          path: ${{ github.workspace }}/myapp  # Asegúrate de que se refiere al archivo ZIP
+          path: ./myapp  # Asegúrate de que se refiere al archivo ZIP
 
   deploy:
     runs-on: windows-latest
