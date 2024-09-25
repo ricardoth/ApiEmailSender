@@ -10,7 +10,8 @@
             service.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             service.AddAutoMapper(typeof(AutoMapperProfile));
 
-            service.AddApplicationInsightsTelemetry();
+            var insightsConfig = configuration.GetSection("ApplicationInsights");
+            service.AddApplicationInsightsTelemetry(insightsConfig["InstrumentationKey"]);
             #endregion
 
             #region Manual Dependencies
