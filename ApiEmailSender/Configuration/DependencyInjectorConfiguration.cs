@@ -14,7 +14,7 @@
             #region Manual Dependencies
             var emailConfig = configuration.GetSection(nameof(EmailConfig)).Get<EmailConfig>();
             service.AddSingleton(emailConfig);
-
+             
             DependencyInjection.UseDependencyInjectionApplication(service, configuration);
             #endregion
         }
