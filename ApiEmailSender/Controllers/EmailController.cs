@@ -18,7 +18,9 @@ namespace ApiEmailSender.WebApi.Controllers
         [HttpPost("generateTicket")]
         public async Task<BaseResponse> Post([FromBody] EmailTicketDto emailTicketDto)
         {
+            _telemetryClient.TrackEvent("[INFO] POST api/email/generateTicket - Invocado");
             var query = await _mediator.Send(new SendEmailTicketCommand(emailTicketDto));
+            _telemetryClient.TrackEvent("[INFO] POST api/email/generateTicket - Request Exitoso");
             return query;
         }
 
@@ -26,7 +28,6 @@ namespace ApiEmailSender.WebApi.Controllers
         public async Task<BaseResponse> Post([FromBody] ResetPasswordEmailDto resetPasswordEmailDto)
         {
             _telemetryClient.TrackEvent("[INFO] POST api/email/resetPassword - Invocado");
-            _telemetryClient.TrackTrace("[INFO] POST api/email/resetPassword - Invocado");
             var query = await _mediator.Send(new ResetPasswordEmailCommand(resetPasswordEmailDto));
             _telemetryClient.TrackEvent("[INFO] POST api/email/resetPassword - Request Exitoso");
             return query;
