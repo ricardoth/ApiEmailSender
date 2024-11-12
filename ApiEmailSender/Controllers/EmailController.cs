@@ -1,7 +1,6 @@
-﻿using Microsoft.ApplicationInsights;
-
-namespace ApiEmailSender.WebApi.Controllers
+﻿namespace ApiEmailSender.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class EmailController : ControllerBase
@@ -14,8 +13,10 @@ namespace ApiEmailSender.WebApi.Controllers
             _mediator = mediator;   
             _telemetryClient = telemetryClient;
         }
-
+        
         [HttpPost("generateTicket")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<BaseResponse> Post([FromBody] EmailTicketDto emailTicketDto)
         {
             _telemetryClient.TrackTrace("[INFO] POST api/email/generateTicket - Invocado");
@@ -25,6 +26,8 @@ namespace ApiEmailSender.WebApi.Controllers
         }
 
         [HttpPost("resetPassword")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<BaseResponse> Post([FromBody] ResetPasswordEmailDto resetPasswordEmailDto)
         {
             _telemetryClient.TrackTrace("[INFO] POST api/email/resetPassword - Invocado");
