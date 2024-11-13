@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-
-namespace ApiEmailSender.WebApi.Configuration
+﻿namespace ApiEmailSender.WebApi.Configuration
 {
     public static class DependencyInjectorConfiguration 
     {
