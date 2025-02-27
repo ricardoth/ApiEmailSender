@@ -1,6 +1,6 @@
 ﻿namespace ApiEmailSender.WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class EmailController : ControllerBase
@@ -25,14 +25,14 @@
             return query;
         }
 
-        [HttpPost("resetPassword")]
+        [HttpPost("requestResetPassword")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<BaseResponse> Post([FromBody] ResetPasswordEmailDto resetPasswordEmailDto)
         {
-            _telemetryClient.TrackTrace("[INFO] POST api/email/resetPassword - Invocado");
+            _telemetryClient.TrackTrace("[INFO] POST api/email/requestResetPassword - Invocado");
             var query = await _mediator.Send(new ResetPasswordEmailCommand(resetPasswordEmailDto));
-            _telemetryClient.TrackTrace("[INFO] POST api/email/resetPassword - Request Exitoso");
+            _telemetryClient.TrackTrace("[INFO] POST api/email/requestResetPassword - Request Exitoso");
             return query;
         }
     }

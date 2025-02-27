@@ -33,7 +33,7 @@
             {
                 To = command.ResetPasswordEmail.To,
                 Subject = command.ResetPasswordEmail.Subject,
-                UrlRetorno = command.ResetPasswordEmail.UrlRetorno
+                UrlRetorno = command.ResetPasswordEmail.UrlRetorno + "?correo=" + command.ResetPasswordEmail.To
             };
         }
     }

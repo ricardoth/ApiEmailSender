@@ -28,10 +28,10 @@
             try
             {
                 IEmail email = _emailFactory.CreateEmail(request);
-                _telemetryClient.TrackTrace("[INFO] POST api/email/resetPassword - Generación de Email y Template.");
+                _telemetryClient.TrackTrace("[INFO] POST api/email/requestResetPassword - Generación de Email y Template.");
                 await email.Send();
 
-                _telemetryClient.TrackTrace($"[INFO] POST api/email/resetPassword - Correo Enviado a {request.ResetPasswordEmail.To}.");
+                _telemetryClient.TrackTrace($"[INFO] POST api/email/requestResetPassword - Correo Enviado a {request.ResetPasswordEmail.To}.");
                 var baseResponse = new BaseResponse()
                 {
                     Message = $"Se ha enviado correctamente el email a {request.ResetPasswordEmail.To}"
