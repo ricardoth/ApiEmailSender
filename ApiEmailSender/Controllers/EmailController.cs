@@ -1,6 +1,6 @@
 ﻿namespace ApiEmailSender.WebApi.Controllers
 {
-    //[Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class EmailController : ControllerBase
@@ -13,7 +13,8 @@
             _mediator = mediator;   
             _telemetryClient = telemetryClient;
         }
-        
+
+        [Authorize]
         [HttpPost("generateTicket")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
