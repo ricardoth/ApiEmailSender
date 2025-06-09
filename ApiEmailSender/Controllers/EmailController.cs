@@ -21,7 +21,7 @@
         {
             _telemetryClient.TrackTrace("[INFO] POST api/email/generateTicket - Invocado");
             var query = await _mediator.Send(new SendEmailTicketCommand(emailTicketDto));
-            //_telemetryClient.TrackTrace("[INFO] POST api/email/generateTicket - Request Exitoso");
+            _telemetryClient.TrackTrace("[INFO] POST api/email/generateTicket - Request Exitoso");
             return query;
         }
 
